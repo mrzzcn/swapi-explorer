@@ -1,8 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: [
+    'react-hot-loader/patch', //设置这里
+    './src/index.js',
+  ],
   output: {
     path: path.resolve(__dirname, 'dist/'),
     publicPath: '/dist/',
@@ -21,6 +25,14 @@ module.exports = {
       use: ['style-loader', 'css-loader'],
     }],
   },
-  resolve: { extensions: ['*', '.js', '.jsx'] },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+    alias: { 'react-dom': '@hot-loader/react-dom' }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      filename: 'index.html'
+    })
+  ]
 };
