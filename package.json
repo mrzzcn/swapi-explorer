@@ -1,0 +1,25 @@
+{
+  "name": "swapi-explorer",
+  "version": "0.0.1",
+  "description": "SWAPI explorer powered by SWAPI-typescript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrzzcn/swapi-explorer.git"
+  },
+  "keywords": [
+    "SWAPI",
+    "Explorer",
+    "Typescript",
+    "Star Wars"
+  ],
+  "author": "mrzzcn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrzzcn/swapi-explorer/issues"
+  },
+  "homepage": "https://github.com/mrzzcn/swapi-explorer"
+}
