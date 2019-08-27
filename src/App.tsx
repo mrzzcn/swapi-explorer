@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { Route } from 'react-router';
 
+import AppTheme from './components/AppTheme';
 import './App.css';
 
 import IndexPage from './pages/Index';
@@ -19,12 +20,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <AppTheme>
         <Route exact path="/" component={IndexPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/theme" component={ThemeDemoPage} />
-
-      </div>
+      </AppTheme>
     );
   }
 }
