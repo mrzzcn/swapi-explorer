@@ -6,6 +6,7 @@ import './App.css';
 
 import IndexPage from './pages/Index';
 import AboutPage from './pages/About';
+import ThemeDemoPage from './pages/Theme';
 
 class App extends Component {
   componentDidMount() {
@@ -21,6 +22,8 @@ class App extends Component {
       <div>
         <Route exact path="/" component={IndexPage} />
         <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/theme" component={ThemeDemoPage} />
+
       </div>
     );
   }
