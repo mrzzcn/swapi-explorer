@@ -2,14 +2,34 @@ import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
 import { Route } from 'react-router';
 
-import AppTheme from './components/AppTheme';
+import {
+  Theme,
+  createStyles,
+  withStyles,
+  WithStyles
+} from '@material-ui/core/styles';
+
+// import AppTheme from './components/AppTheme';
 import './App.css';
 
 import IndexPage from './pages/Index';
 import AboutPage from './pages/About';
 import ThemeDemoPage from './pages/Theme';
 
-class App extends Component {
+const styles = (theme: Theme) =>
+  createStyles({
+    body: {
+      backgroundColor: theme.palette.background.default,
+      minHeight: '100vh',
+      color: theme.palette.text.primary
+    }
+  });
+
+interface AppProps extends WithStyles<typeof styles> {
+  toggle: () => void;
+}
+
+class App extends Component<AppProps> {
   componentDidMount() {
     console.log(
       `%c${this.constructor.name}:`,
@@ -19,14 +39,17 @@ class App extends Component {
   }
 
   render() {
+    const { classes, toggle } = this.props;
     return (
-      <AppTheme>
+      <div className={classes.body}>
+        <button onClick={toggle}>Toggle</button>
+        <hr />
         <Route exact path="/" component={IndexPage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/theme" component={ThemeDemoPage} />
-      </AppTheme>
+      </div>
     );
   }
 }
 
-export default hot(module)(App);
+export default hot(module)(withStyles(styles)(App));
