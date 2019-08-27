@@ -10,7 +10,7 @@ const publicPath = isDev ? '/' : '/dist/';
 module.exports = {
   entry: [
     'react-hot-loader/patch', //设置这里
-    './src/index.js',
+    './src/index.tsx',
   ],
   devServer: {
     hot: true,
@@ -25,7 +25,7 @@ module.exports = {
 
   module: {
     rules: [{
-      test: /\.(js|jsx)$/,
+      test: /\.(js|jsx|ts|tsx)$/,
       exclude: /node_modules/,
       loader: 'babel-loader',
       options: { presets: ['@babel/env'] }
@@ -35,7 +35,7 @@ module.exports = {
     }],
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx'],
+    extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
     alias: { 'react-dom': '@hot-loader/react-dom' }
   },
   plugins: [
