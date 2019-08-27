@@ -8,17 +8,15 @@ import AppTheme from './components/AppTheme';
 
 function Index() {
   return (
-    <Router>
-      <Switch>
-        <AppTheme>
-          {({ toggle }) => (
-            <>
-              <Route path="/" component={() => <App toggle={toggle} />} />
-            </>
-          )}
-        </AppTheme>
-      </Switch>
-    </Router>
+    <AppTheme>
+      {({ toggle }) => (
+        <Router>
+          <Switch>
+            <Route path="/" component={() => <App toggle={toggle} />} />
+          </Switch>
+        </Router>
+      )}
+    </AppTheme>
   );
 }
 
