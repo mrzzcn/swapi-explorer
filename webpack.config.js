@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const isDev = NODE_ENV === 'development';
 
-const publicPath = isDev ? '/' : '/dist/';
+const publicPath = isDev ? './' : './';
 
 module.exports = {
   entry: [
@@ -17,7 +17,7 @@ module.exports = {
     publicPath,
   },
   output: {
-    path: path.resolve(__dirname, 'dist/'),
+    path: path.resolve(__dirname, './'),
     publicPath,
     filename: 'bundle.js'
   },
