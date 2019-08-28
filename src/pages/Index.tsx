@@ -21,7 +21,7 @@ class IndexPage extends Component<IndexProps, IndexState> {
   }
 
   componentDidMount() {
-    get('https://swapi.co/api/', {}).then(res => {
+    get('https://swapi.co/api/', { hello: 'world', foo: 'bar' }).then(res => {
       console.log(res);
     });
   }
