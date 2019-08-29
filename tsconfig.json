@@ -7,7 +7,8 @@
     "jsx": "preserve",
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "experimentalDecorators": true
   },
   "include": ["./src/**/*"]
 }

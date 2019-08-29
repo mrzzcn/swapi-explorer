@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import People from 'swapi-typescript/dist/models/People';
 
+import { AppState } from '../redux/store';
+import { State as PeopleState } from '../redux/people/index';
+import { setPerson, appendPeople } from '../redux/people/actions';
 import { get } from '../utils/http';
 import SWAPI from '../utils/swapi';
 
@@ -11,7 +16,24 @@ interface IndexState {
   hello: string;
 }
 
-class IndexPage extends Component<IndexProps, IndexState> {
+function mapStateToProps(state: AppState) {
+  return {
+    people: state.people
+  };
+}
+
+type stateProps = {
+  people: PeopleState;
+};
+
+const dispatchAction = {
+  appendPeople,
+  setPerson
+};
+
+type IProps = IndexProps & stateProps & typeof dispatchAction;
+
+class IndexPage extends Component<IProps, IndexState> {
   /**
    *
    */
@@ -26,14 +48,17 @@ class IndexPage extends Component<IndexProps, IndexState> {
       console.log(res);
     });
     SWAPI.people().then(res => {
+      this.props.appendPeople({ people: res.results, next: res.next });
       console.log(res.results);
     });
     SWAPI.person(1).then(res => {
       console.log(res);
+      this.props.setPerson(res);
     });
   }
 
   render() {
+    const { people } = this.props;
     return (
       <div>
         <Link to="/">Home</Link> |&nbsp;
@@ -41,9 +66,15 @@ class IndexPage extends Component<IndexProps, IndexState> {
         <Link to="/about">About</Link>
         <hr />
         Hello {this.state.hello}
+        <hr />
+        Total: {people.list.length} <br />
+        Current: {people.current ? people.current.name : '--'}
       </div>
     );
   }
 }
 
-export default IndexPage;
+export default connect(
+  mapStateToProps,
+  dispatchAction
+)(IndexPage);
