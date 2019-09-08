@@ -8,7 +8,6 @@ import People from 'swapi-typescript/dist/models/People';
 import { AppState } from '../redux/store';
 import { State as PeopleState } from '../redux/people/index';
 import { setPerson, appendPeople } from '../redux/people/actions';
-import SWAPI from '../utils/swapi';
 
 interface IndexProps extends RouteComponentProps<{ foo?: string }> {}
 
@@ -26,27 +25,11 @@ type stateProps = {
   people: PeopleState;
 };
 
-const dispatchAction = {
-  appendPeople,
-  setPerson
-};
+const dispatchAction = {};
 
 type injectDispatch = {
   dispatch: Dispatch;
 };
-
-function mapDispatchToProps(dispatch: Dispatch) {
-  return {
-    dispatch,
-    ...bindActionCreators(
-      {
-        appendPeople,
-        setPerson
-      },
-      dispatch
-    )
-  };
-}
 
 type IProps = IndexProps & stateProps & typeof dispatchAction & injectDispatch;
 
@@ -62,13 +45,6 @@ class IndexPage extends Component<IProps, IndexState> {
   componentDidMount() {
     this.props.dispatch({ type: 'PEOPLE_FETCH_REQUESTED' });
     this.props.dispatch({ type: 'PERSON_FETCH_REQUESTED', payload: 1 });
-    SWAPI.people().then(res => {
-      this.props.appendPeople({
-        people: res.results,
-        total: res.count,
-        next: res.next
-      });
-    });
   }
 
   render() {
@@ -89,6 +65,5 @@ class IndexPage extends Component<IProps, IndexState> {
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(IndexPage);
