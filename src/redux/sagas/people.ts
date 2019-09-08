@@ -1,6 +1,6 @@
 /*
  * @Date: 2019-09-08 15:59:15
- * @LastEditTime: 2019-09-08 21:53:37
+ * @LastEditTime: 2019-09-08 22:23:15
  * @Description: 
  * @Author: Zhen
  * @LastEditors: Zhen
@@ -29,10 +29,10 @@ function* fetchPerson(action) {
   }
 }
 
-function* mySaga() {
+function* peopleSaga() {
   console.log('Hello mySaga');
   yield takeEvery('PEOPLE_FETCH_REQUESTED', fetchPeople);
   yield takeEvery('PERSON_FETCH_REQUESTED', fetchPerson);
 }
 
-export default mySaga;
+export default peopleSaga;

@@ -45,6 +45,9 @@ class IndexPage extends Component<IProps, IndexState> {
   componentDidMount() {
     this.props.dispatch({ type: 'PEOPLE_FETCH_REQUESTED' });
     this.props.dispatch({ type: 'PERSON_FETCH_REQUESTED', payload: 1 });
+
+    this.props.dispatch({ type: 'STARSHIPS_FETCH_REQUESTED' });
+    this.props.dispatch({ type: 'STARSHIP_FETCH_REQUESTED', payload: 2 });
   }
 
   render() {
@@ -64,6 +67,4 @@ class IndexPage extends Component<IProps, IndexState> {
   }
 }
 
-export default connect(
-  mapStateToProps
-)(IndexPage);
+export default connect(mapStateToProps)(IndexPage);
